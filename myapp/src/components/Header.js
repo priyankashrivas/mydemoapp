@@ -9,7 +9,7 @@ class Header extends Component {
                 <div className='ui secondary pointing menu'>
                 <Link to='/' className='item'> React Demo App</Link>
                 <Link to='/post/list'  className='ui button primary'> Post List</Link>
-                <Link to='/post/create' className='ui button primary'> Create your own post</Link>
+                <Link to='/post/create' className='ui button grey'> Create your own post</Link>
                     <div className='right menu'>
                         <Link className='ui button left aligned button' to={`/`}>back</Link>
                         <Auth/>

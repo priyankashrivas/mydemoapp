@@ -18,13 +18,13 @@ export const signIn = formValues => async () => {
       
       toastrSuccess(`SignIn Successful`,`${formValues.username}`)
       
-      //It will set the currently logged in user dat on localstorage
+      //It will set the currently logged in user data on localstorage
       localStorage.setItem("validToken", response.data.token);
       localStorage.setItem("userId", response.data.user_id);
       //console.log(localStorage.getItem("userId"));
       localStorage.setItem("userName", response.data.user_display_name);    
       //console.log(localStorage.getItem("validToken"))
-      history.push('/'); 
+      history.push('/post/list'); 
     }
     catch(error){
       toastrFailure(` Error due to form submission`,`${formValues.username}`);
@@ -91,6 +91,7 @@ export const veiwUser = id => async (dispatch) => {
     try{
       console.log(formValues)
       const response  = await axios1.post('/wp/v2/posts',{...formValues});
+      history.push('/')
       console.log(response.data);
       
     }catch(error){

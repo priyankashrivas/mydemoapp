@@ -14,15 +14,36 @@ class PostForm extends React.Component {
         }
     }
     
+
     renderInput = ({input,label,meta}) => {
         const className=`Field ${meta.error && meta.touched ? 'error' : ' '}`;
         return (
             <div className ={className}>
                 <label>{label}</label>
-                <input {...input} autoComplete="off"/>
+                <input {...input} placeholder ={label}autoComplete="off"/>
                 {this.renderError(meta)}
             </div>
         );  
+    }
+
+    renderSelect =({input,label,meta}) => {
+        const className=`Field ${meta.error && meta.touched ? 'error' : ' '}`;
+        return (
+            <div className={className}>
+              <label>
+                {label}
+              </label>
+              <select {...input} placeholder ={label}>
+                <option></option>
+                <option value="publish">Publish</option>
+                <option value="future">Future</option>
+                <option value="draft">Draft</option>
+                <option value="pending">Pending</option>
+                <option value="draft">Private</option> 
+              </select>
+              {this.renderError(meta)}
+            </div>
+          )
     }
     
     onSubmit = formValues =>{
@@ -32,13 +53,31 @@ class PostForm extends React.Component {
     render() {
         return (
             <form onSubmit = {this.props.handleSubmit(this.onSubmit)} className="ui form error">
-                <Field name ="title" component ={this.renderInput} label="Enter title" />
-                <Field name ="content" component={this.renderInput}  label="Enter description"/>
-                <Field name ="status" component={this.renderInput}  label="Status"/>
-                <div>
-                <button className = "ui button primary">submit</button>
-                </div>
+                <Field 
+                    name ="title" 
+                    component ={this.renderInput} 
+                    placeholder ='Enter title'
+                    label="Enter title" 
+                />
+                <Field 
+                    name ="content" 
+                    component={this.renderInput}  
+                    placeholder ='enter description' 
+                    label="Enter description" 
+                />
+                <Field 
+                    name ="status" 
+                    component={this.renderSelect}  
+                    placeholder ='Enter status'
+                    label="Status"
+                />
                 
+                <div>
+                    <button className = "ui button primary">submit</button>
+                    <button className='ui button red' disabled={this.props.pristine || this.props.submitting} onClick={this.props.reset}>
+                        Clear 
+                    </button>
+                </div>
             </form>
         );
     }  

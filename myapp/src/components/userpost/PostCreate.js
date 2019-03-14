@@ -19,7 +19,7 @@ class PostCreate extends React.Component {
                 </div>
             );
         } else {
-            return <div>{history.push('/')}</div>
+            return <div>{history.push('/post/list')}</div>
         } 
      }  
 }

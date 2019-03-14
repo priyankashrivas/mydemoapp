@@ -21,7 +21,7 @@ class UserForm extends React.Component {
         <label>
           {label}
         </label>
-        <input {...input} type={Type} autoComplete="off"/>
+        <input {...input} type={Type} placeholder={label} autoComplete="off"/>
         {this.renderError(meta)}
       </div>
     )
@@ -41,30 +41,35 @@ class UserForm extends React.Component {
           name='first_name'
           component={this.renderField}
           label='Enter First Name'
+          placeholder='Enter your first name'
         />
         <Field 
           Type='text'
           name='last_name'
           component={this.renderField}
           label='Enter Last Name'
+          placeholder='Enter your last name'
         />
         <Field 
           Type='email'
           name='email'
           component={this.renderField}
           label='Enter Email ID'
+          placeholder='Enter email id'
         />
         <Field 
           Type='text'
           name='username'
           component={this.renderField}
           label='Enter User Name'
+          placeholder='Enter username'
         />
         <Field 
           Type='password' 
           name='password' 
           component={this.renderField} 
           label='Enter Password'
+          placeholder='Enter password'
           
         />
         <Field 
@@ -73,9 +78,13 @@ class UserForm extends React.Component {
           component={this.renderField} 
           idLable='cpsw' 
           label='Confirm Password'
+          placeholder='Confirm password'
           
         />
         <button className="ui button primary" >Submit</button>
+        <button className='ui button red' disabled={this.props.pristine || this.props.submitting} onClick={this.props.reset}>
+          Cancel
+        </button>
       </form>
       </div>      
     )
@@ -118,6 +127,9 @@ const validate = formValues => {
     errors.password = "must enter password!!!";
   }else if(formValues.password.length>6 && formValues.password.length<8){
     errors.password = 'Minimum length is 6 and maximum is 8 character'
+  }
+  if (!/[^a-zA-Z0-9 ]/i.test(formValues.password)) {
+    errors.password = 'Only Alfanumeric value will aceepted'
   }
 
   if(!formValues.cpassword){

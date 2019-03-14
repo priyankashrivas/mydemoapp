@@ -22,7 +22,7 @@ class Auth extends React.Component {
     }else {
       return(
         <div className='ui list'>
-          <div><button className ='ui button'><Link to ='/' onClick = {this.onSubmit}>logout</Link></button></div>
+          <div><button className ='ui button cyan'><Link to ='/' onClick = {this.onSubmit}>logout</Link></button></div>
         </div>
       );
     }

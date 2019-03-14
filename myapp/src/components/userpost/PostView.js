@@ -6,6 +6,7 @@ class PostView extends React.Component {
     return (
       <div>
         <h3>Post :</h3>
+        
       </div>
     )
   }
